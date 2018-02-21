@@ -1,4 +1,4 @@
-package com.sebastian_daschner.instrument_craft_shop;
+package com.sebastian_daschner.instrument_craft_shop.entity;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;

@@ -1,4 +1,4 @@
-package com.sebastian_daschner.instrument_craft_shop;
+package com.sebastian_daschner.instrument_craft_shop.boundary;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

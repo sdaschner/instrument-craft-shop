@@ -1,4 +1,6 @@
-package com.sebastian_daschner.instrument_craft_shop;
+package com.sebastian_daschner.instrument_craft_shop.control;
+
+import com.sebastian_daschner.instrument_craft_shop.entity.InstrumentType;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
