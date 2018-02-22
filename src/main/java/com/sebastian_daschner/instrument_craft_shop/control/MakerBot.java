@@ -29,21 +29,21 @@ public class MakerBot {
         target = client.target("http://maker-bot:9080/maker-bot/resources/jobs");
     }
 
-    public void startPrintJob(InstrumentType type) {
-        JsonObject entity = buildEntity(type);
-        Response response = sendRequest(entity);
+    public void printInstrument(InstrumentType type) {
+        JsonObject requestBody = createRequestBody(type);
+        Response response = sendRequest(requestBody);
         validateResponse(response);
     }
 
-    private JsonObject buildEntity(InstrumentType type) {
+    private JsonObject createRequestBody(InstrumentType type) {
         return Json.createObjectBuilder()
                 .add("instrument", type.name().toLowerCase())
                 .build();
     }
 
-    private Response sendRequest(JsonObject entity) {
+    private Response sendRequest(JsonObject requestBody) {
         try {
-            return target.request().post(Entity.json(entity));
+            return target.request().post(Entity.json(requestBody));
         } catch (Exception e) {
             throw new IllegalStateException("Could not print instrument, reason: " + e.getMessage(), e);
         }
@@ -58,5 +58,4 @@ public class MakerBot {
     private void closeClient() {
         client.close();
     }
-
 }

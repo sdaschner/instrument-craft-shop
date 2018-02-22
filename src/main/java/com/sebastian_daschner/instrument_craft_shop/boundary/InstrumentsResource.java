@@ -16,7 +16,7 @@ public class InstrumentsResource {
 
     @POST
     public void createInstrument(@Valid @NotNull Instrument instrument) {
-        instrumentCraftShop.craft(instrument);
+        instrumentCraftShop.craftInstrument(instrument);
     }
 
 }

@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 public class HealthResource {
 
     @GET
-    public String healthCheck() {
+    public String health() {
         return "OK";
     }
 

@@ -9,27 +9,13 @@ spec:
       labels:
         app: instrument-craft-shop
         version: v1
-      annotations:
-        sidecar.istio.io/inject: "false"
+#      annotations:
+#        sidecar.istio.io/inject: "false"
     spec:
       containers:
       - name: instrument-craft-shop
         image: docker.sebastian-daschner.com/instrument-craft-shop:1
         imagePullPolicy: Always
-        livenessProbe:
-          exec:
-            command:
-            - /bin/bash
-            - -c
-            - curl -f localhost:9080/
-          initialDelaySeconds: 30
-        readinessProbe:
-          exec:
-            command:
-            - /bin/bash
-            - -c
-            - curl -f localhost:9080/instrument-craft-shop/resources/health
-          initialDelaySeconds: 40
       imagePullSecrets:
       - name: regsecret
       restartPolicy: Always
