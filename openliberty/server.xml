@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<server description="OpenLiberty Java EE 8 Server">
+<server description="OpenLiberty Server">
 
     <featureManager>
         <feature>javaee-7.0</feature>
