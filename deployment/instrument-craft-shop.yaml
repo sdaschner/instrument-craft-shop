@@ -14,6 +14,20 @@ spec:
       - name: instrument-craft-shop
         image: docker.sebastian-daschner.com/instrument-craft-shop:1
         imagePullPolicy: Always
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - -c
+            - curl -f localhost:9080/
+          initialDelaySeconds: 30
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - -c
+            - curl -f localhost:9080/instrument-craft-shop/resources/health
+          initialDelaySeconds: 40
       imagePullSecrets:
       - name: regsecret
       restartPolicy: Always

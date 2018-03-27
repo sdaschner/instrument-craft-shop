@@ -1,14 +1,14 @@
 package com.sebastian_daschner.instrument_craft_shop.entity;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 
 public class Instrument {
 
     @NotNull
     private InstrumentType type;
 
-    @Positive
+    @Min(0)
     private int price;
 
     public InstrumentType getType() {

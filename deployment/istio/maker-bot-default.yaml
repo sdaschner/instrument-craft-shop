@@ -1,0 +1,13 @@
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: maker-bot-default
+spec:
+  destination:
+    name: maker-bot
+  precedence: 1
+  route:
+  - weight: 100
+    labels:
+      version: v1
+---

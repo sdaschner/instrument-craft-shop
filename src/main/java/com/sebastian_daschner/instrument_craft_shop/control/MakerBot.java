@@ -23,8 +23,6 @@ public class MakerBot {
     @PostConstruct
     private void initClient() {
         client = ClientBuilder.newBuilder()
-                .connectTimeout(1, TimeUnit.SECONDS)
-                .readTimeout(3, TimeUnit.SECONDS)
                 .build();
         target = client.target("http://maker-bot:9080/maker-bot/resources/jobs");
     }
