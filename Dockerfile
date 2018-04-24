@@ -1,7 +1,4 @@
-FROM sdaschner/open-liberty:javaee7-jdk8-b1
-
-ADD https://repo1.maven.org/maven2/net/wasdev/wlp/tracer/liberty-opentracing-zipkintracer/1.0/liberty-opentracing-zipkintracer-1.0-sample.zip /
-RUN unzip liberty-opentracing-zipkintracer-1.0-sample.zip -d $INSTALL_DIR/usr/
+FROM sdaschner/open-liberty:javaee8-tracing-jdk8-b1
 
 COPY openliberty/server.xml $CONFIG_DIR
 
