@@ -11,6 +11,14 @@ public class Instrument {
     @Min(0)
     private int price;
 
+    public Instrument() {
+    }
+
+    public Instrument(InstrumentType type, int price) {
+        this.type = type;
+        this.price = price;
+    }
+
     public InstrumentType getType() {
         return type;
     }

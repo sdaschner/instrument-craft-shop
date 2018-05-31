@@ -1,6 +1,7 @@
 package com.sebastian_daschner.instrument_craft_shop.control;
 
 import com.sebastian_daschner.instrument_craft_shop.entity.InstrumentType;
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -29,6 +30,7 @@ public class MakerBot {
         target = client.target("http://maker-bot:9080/maker-bot/resources/jobs");
     }
 
+    @CircuitBreaker
     public void printInstrument(InstrumentType type) {
         JsonObject requestBody = createRequestBody(type);
         Response response = sendRequest(requestBody);

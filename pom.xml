@@ -13,10 +13,16 @@
             <version>8.0</version>
             <scope>provided</scope>
         </dependency>
-         <dependency>
+        <dependency>
             <groupId>com.airhacks</groupId>
             <artifactId>porcupine</artifactId>
             <version>0.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.fault-tolerance</groupId>
+            <artifactId>microprofile-fault-tolerance-api</artifactId>
+            <version>1.1</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

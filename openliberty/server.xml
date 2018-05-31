@@ -4,6 +4,7 @@
     <featureManager>
         <feature>javaee-8.0</feature>
         <feature>mpMetrics-1.0</feature>
+        <feature>mpFaultTolerance-1.0</feature>
         <feature>mpOpenTracing-1.0</feature>
         <feature>usr:opentracingZipkin-0.30</feature>
     </featureManager>

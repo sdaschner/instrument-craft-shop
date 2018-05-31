@@ -1,33 +1,35 @@
 package com.sebastian_daschner.instrument_craft_shop.boundary;
 
-import com.sebastian_daschner.instrument_craft_shop.control.Instruments;
 import com.sebastian_daschner.instrument_craft_shop.control.MakerBot;
 import com.sebastian_daschner.instrument_craft_shop.entity.Instrument;
+import com.sebastian_daschner.instrument_craft_shop.entity.InstrumentType;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.List;
 
-@Stateless
 public class InstrumentCraftShop {
 
     @Inject
     MakerBot makerBot;
 
-    @Inject
-    Instruments instruments;
-
     public void craftInstrument(Instrument instrument) {
         makerBot.printInstrument(instrument.getType());
 
-        System.out.println("printing instrument " + instrument.getType() + " with price $" + instrument.getPrice());
-        instruments.add(instrument);
-        sleep(100);
+        sleep(200);
     }
 
     public List<Instrument> getInstruments() {
-        sleep(100);
-        return instruments.get();
+        sleep(200);
+        return buildInstruments();
+    }
+
+    private static List<Instrument> buildInstruments() {
+        return Arrays.asList(
+                new Instrument(InstrumentType.GUITAR, 100),
+                new Instrument(InstrumentType.VIOLIN, 200),
+                new Instrument(InstrumentType.PIANO, 500)
+        );
     }
 
     private void sleep(int millis) {

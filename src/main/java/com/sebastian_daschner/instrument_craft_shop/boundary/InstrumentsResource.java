@@ -8,9 +8,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutorService;
 
 @Path("instruments")
@@ -30,13 +30,17 @@ public class InstrumentsResource {
     ExecutorService writeExecutor;
 
     @GET
-    public CompletionStage<List<Instrument>> getInstruments() {
+    public CompletableFuture<List<Instrument>> getInstruments() {
         return CompletableFuture.supplyAsync(() -> instrumentCraftShop.getInstruments(), readExecutor);
     }
 
     @POST
-    public void createInstrument(@Valid @NotNull Instrument instrument) {
-        writeExecutor.execute(() -> instrumentCraftShop.craftInstrument(instrument));
+    public CompletableFuture<Response> createInstrument(@Valid @NotNull Instrument instrument) {
+        return CompletableFuture.runAsync(() -> instrumentCraftShop.craftInstrument(instrument), writeExecutor)
+                .thenApply(c -> Response.noContent().build())
+                .exceptionally(e -> Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                        .header("X-Error", e.getMessage())
+                        .build());
     }
 
 }
