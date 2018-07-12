@@ -45,6 +45,11 @@ spec:
       imagePullSecrets:
       - name: regsecret
       restartPolicy: Always
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
 ---
 kind: Ingress
 apiVersion: extensions/v1beta1
