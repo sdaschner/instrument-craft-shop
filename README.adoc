@@ -1,6 +1,6 @@
 An example project for microservices running on Java EE and MicroProfile.
 
-Comprises two applications, this _instrument-craft-shop_ application, and https://github.com/sdaschner/maker-bot[maker-bot^] which can be deployed to local Docker containers.
+Comprises two applications, this _instrument-craft-shop_ application, and https://github.com/sdaschner/maker-bot[maker-bot^].
 
 == Local Docker
 
