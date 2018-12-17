@@ -1,0 +1,9 @@
+An example project for microservices running on Java EE and MicroProfile.
+
+Comprises two applications, this _instrument-craft-shop_ application, and https://github.com/sdaschner/maker-bot[maker-bot^] which can be deployed to local Docker containers.
+
+== Local Docker
+
+In order to run the Docker containers locally, execute `./docker-run-local.sh`.
+As a prerequisite, you need to create a Docker network first: + 
+`docker network create --subnet=192.168.42.0/24 dkrnet`

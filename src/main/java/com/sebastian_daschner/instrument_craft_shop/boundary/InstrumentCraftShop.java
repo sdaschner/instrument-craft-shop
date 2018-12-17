@@ -3,7 +3,10 @@ package com.sebastian_daschner.instrument_craft_shop.boundary;
 import com.sebastian_daschner.instrument_craft_shop.control.MakerBot;
 import com.sebastian_daschner.instrument_craft_shop.entity.Instrument;
 import com.sebastian_daschner.instrument_craft_shop.entity.InstrumentType;
-import org.eclipse.microprofile.faulttolerance.*;
+import org.eclipse.microprofile.faulttolerance.Asynchronous;
+import org.eclipse.microprofile.faulttolerance.Bulkhead;
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
+import org.eclipse.microprofile.faulttolerance.Timeout;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -27,7 +30,6 @@ public class InstrumentCraftShop {
     }
 
     @CircuitBreaker
-//    @Timeout
     @Bulkhead(value = 4, waitingTaskQueue = 10)
     @Asynchronous
     public Future<List<Instrument>> getInstruments() {
