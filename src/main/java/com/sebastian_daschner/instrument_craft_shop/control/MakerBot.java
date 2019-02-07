@@ -32,15 +32,10 @@ public class MakerBot {
     }
 
     @CircuitBreaker
-    @Fallback(fallbackMethod = "doNothing")
     public void printInstrument(InstrumentType type) {
         JsonObject requestBody = createRequestBody(type);
         Response response = sendRequest(requestBody);
         validateResponse(response);
-    }
-
-    public void doNothing(InstrumentType type) {
-        System.err.println("would have loved to print a " + type + " but didn't work");
     }
 
     private JsonObject createRequestBody(InstrumentType type) {

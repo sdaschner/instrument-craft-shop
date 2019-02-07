@@ -5,34 +5,32 @@ import com.sebastian_daschner.instrument_craft_shop.entity.Instrument;
 import com.sebastian_daschner.instrument_craft_shop.entity.InstrumentType;
 import org.eclipse.microprofile.faulttolerance.Asynchronous;
 import org.eclipse.microprofile.faulttolerance.Bulkhead;
-import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
-import org.eclipse.microprofile.faulttolerance.Timeout;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
 
+@ApplicationScoped
 public class InstrumentCraftShop {
 
     @Inject
     MakerBot makerBot;
 
-    @Timeout
-    @Bulkhead
+    @Bulkhead(value = 4, waitingTaskQueue = 4)
     @Asynchronous
-    public Future<Void> craftInstrument(Instrument instrument) {
+    public CompletionStage<Void> craftInstrument(Instrument instrument) {
         makerBot.printInstrument(instrument.getType());
 
         sleep(200);
         return CompletableFuture.completedFuture(null);
     }
 
-    @CircuitBreaker
-    @Bulkhead(value = 4, waitingTaskQueue = 10)
+    @Bulkhead(value = 4, waitingTaskQueue = 4)
     @Asynchronous
-    public Future<List<Instrument>> getInstruments() {
+    public CompletionStage<List<Instrument>> getInstruments() {
         sleep(200);
         return CompletableFuture.completedFuture(buildInstruments());
     }
